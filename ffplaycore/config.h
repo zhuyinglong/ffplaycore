@@ -30,10 +30,10 @@
 // on Avisynth C Interface, such as 3rd-party filters, import and
 // export plugins, or graphical user interfaces.
 
-/*begin for vs2015*/
+/*begin for vs2013*/
 #define HAVE_COMMANDLINETOARGVW 1
 #define CONFIG_SWSCALE 1
-/*end for vs2015*/
+/*end for vs2013*/
 
 #ifndef AVS_CONFIG_H
 #define AVS_CONFIG_H

@@ -22,7 +22,7 @@
  * @file
  * simple media player based on the FFmpeg libraries
  */
-/*begin for vs2015*/
+/*begin for vs2013*/
 #pragma comment(lib,"avcodec.lib")
 #pragma comment(lib,"avdevice.lib")
 #pragma comment(lib,"avfilter.lib")
@@ -32,7 +32,7 @@
 #pragma comment(lib,"swresample.lib")
 #pragma comment(lib,"swscale.lib")
 #pragma comment(lib,"SDL2.lib")
-/*end for vs2015*/
+/*end for vs2013*/
 extern "C"
 {
 #include "config.h"
@@ -1116,7 +1116,7 @@ static void video_audio_display(VideoState *s)
                 pitch >>= 2;
                 pixels += pitch * s->height;
                 for (y = 0; y < s->height; y++) {
-                    double w = 1 / sqrt(nb_freq);
+                    double w = 1 / sqrt((double)(nb_freq));
                     int a = static_cast<int>(sqrt(w * sqrt(data[0][2 * y + 0] * data[0][2 * y + 0] + data[0][2 * y + 1] * data[0][2 * y + 1])));
                     int b = static_cast<int>((nb_display_channels == 2 ) ? sqrt(w * hypot(data[1][2 * y + 0], data[1][2 * y + 1]))
                                                         : a);
@@ -1469,7 +1469,7 @@ static void toggle_mute(VideoState *is)
 
 static void update_volume(VideoState *is, int sign, double step)
 {
-    double volume_level = is->audio_volume ? (20 * log(is->audio_volume / (double)SDL_MIX_MAXVOLUME) / log(10)) : -1000.0;
+    double volume_level = is->audio_volume ? (20 * log(is->audio_volume / (double)SDL_MIX_MAXVOLUME) / log((double)10)) : -1000.0;
     int new_volume = lrint(SDL_MIX_MAXVOLUME * pow(10.0, (volume_level + sign * step) / 20.0));
     is->audio_volume = av_clip(is->audio_volume == new_volume ? (is->audio_volume + sign) : new_volume, 0, SDL_MIX_MAXVOLUME);
 }
@@ -3665,9 +3665,9 @@ int main(int argc, char **argv)
     show_banner(argc, argv, options);
 
     parse_options(NULL, argc, argv, options, opt_input_file);
-	/*begin for vs2015*/
+	/*begin for vs2013*/
 	input_filename = "test.mp4";
-	/*end for vs2015*/
+	/*end for vs2013*/
     if (!input_filename) {
         show_usage();
         av_log(NULL, AV_LOG_FATAL, "An input file must be specified\n");

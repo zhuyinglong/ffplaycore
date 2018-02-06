@@ -31,15 +31,15 @@
 extern "C"
 {
 #include "config.h"
-	/*begin for vs2015*/
+	/*begin for vs2013*/
 	//#include "compat/va_copy.h"
-	/*end for vs2015*/
+	/*end for vs2013*/
 #include "libavformat/avformat.h"
 #include "libavfilter/avfilter.h"
 #include "libavdevice/avdevice.h"
-/*begin for vs2015*/
+/*begin for vs2013*/
 //#include "libavresample/avresample.h"
-/*end for vs2015*/
+/*end for vs2013*/
 #include "libswscale/swscale.h"
 #include "libswresample/swresample.h"
 #include "libpostproc/postprocess.h"
@@ -49,9 +49,9 @@ extern "C"
 #include "libavutil/display.h"
 #include "libavutil/mathematics.h"
 #include "libavutil/imgutils.h"
-/*begin for vs2015*/
+/*begin for vs2013*/
 //#include "libavutil/libm.h"
-/*end for vs2015*/
+/*end for vs2013*/
 #include "libavutil/parseutils.h"
 #include "libavutil/pixdesc.h"
 #include "libavutil/eval.h"
@@ -73,6 +73,12 @@ extern "C"
 #ifdef _WIN32
 #include <windows.h>
 #endif
+
+/*begin for vs2013*/
+#if _MSC_VER
+#define snprintf _snprintf
+#endif
+/*end for vs2013*/
 
 static int init_report(const char *env);
 
@@ -1105,7 +1111,7 @@ static int warned_cfg = 0;
 
 static void print_all_libs_info(int flags, int level)
 {
-/*begin for vs2015*/
+/*begin for vs2013*/
 //    PRINT_LIB_INFO(avutil,     AVUTIL,     flags, level);
 //    PRINT_LIB_INFO(avcodec,    AVCODEC,    flags, level);
 //    PRINT_LIB_INFO(avformat,   AVFORMAT,   flags, level);
@@ -1115,12 +1121,12 @@ static void print_all_libs_info(int flags, int level)
 //    PRINT_LIB_INFO(swscale,    SWSCALE,    flags, level);
 //    PRINT_LIB_INFO(swresample, SWRESAMPLE, flags, level);
 //    PRINT_LIB_INFO(postproc,   POSTPROC,   flags, level);
-/*end for vs2015*/
+/*end for vs2013*/
 }
 
 static void print_program_info(int flags, int level)
 {
-/*begin for vs2015*/
+/*begin for vs2013*/
 //  const char *indent = flags & INDENT? "  " : "";
 
 //   av_log(NULL, level, "%s version " FFMPEG_VERSION, program_name);
@@ -1131,12 +1137,12 @@ static void print_program_info(int flags, int level)
 //  av_log(NULL, level, "%sbuilt with %s\n", indent, CC_IDENT);
 
 //  av_log(NULL, level, "%sconfiguration: " FFMPEG_CONFIGURATION "\n", indent);
-/*end for vs2015*/
+/*end for vs2013*/
 }
 
 static void print_buildconf(int flags, int level)
 {
-/*begin for vs2015*/
+/*begin for vs2013*/
 #if 0
     const char *indent = flags & INDENT ? "  " : "";
     char str[] = { FFMPEG_CONFIGURATION };
@@ -1161,7 +1167,7 @@ static void print_buildconf(int flags, int level)
         splitconf = strtok(NULL, "~");
     }
 #endif
-/*end for vs2015*/
+/*end for vs2013*/
 }
 
 void show_banner(int argc, char **argv, const OptionDef *options)
@@ -1963,7 +1969,7 @@ FILE *get_preset_file(char *filename, size_t filename_size,
                       const char *codec_name)
 {
     FILE *f = NULL;
-/*begin for vs2015*/
+/*begin for vs2013*/
 #if 0
     int i;
     const char *base[3] = { getenv("FFMPEG_DATADIR"),
@@ -2007,7 +2013,7 @@ FILE *get_preset_file(char *filename, size_t filename_size,
         }
     }
 #endif
-/*end for vs2015*/
+/*end for vs2013*/
     return f;
 }
 
