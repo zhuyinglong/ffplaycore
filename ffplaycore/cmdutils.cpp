@@ -74,12 +74,6 @@ extern "C"
 #include <windows.h>
 #endif
 
-/*begin for vs2013*/
-#if _MSC_VER
-#define snprintf _snprintf
-#endif
-/*end for vs2013*/
-
 static int init_report(const char *env);
 
 AVDictionary *sws_dict;
